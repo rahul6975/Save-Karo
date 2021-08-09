@@ -2,30 +2,32 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:save_karo/DeviceSize.dart';
 
+import 'BaseView.dart';
+import 'RouteName.dart';
+import 'SignInViewModel.dart';
+import 'Utils.dart';
 import 'ViewState.dart';
 
-class LoginScreen extends StatefulWidget{
-
+class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen>{
-
-
+class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> _userLoginFormKey = GlobalKey();
   late FirebaseUser _user;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final DeviceSize deviceSize =
+      DeviceSize(size: Size(0, 0), width: 0, height: 0, aspectRatio: 0);
 
-  bool isSignIn =false;
-  bool google =false;
-
+  bool isSignIn = false;
+  bool google = false;
 
   @override
   Widget build(BuildContext context) {
-
     return BaseView<SignInViewModel>(
         onModelReady: (model) {},
         builder: (context, model, build) {
@@ -44,145 +46,179 @@ class _LoginScreenState extends State<LoginScreen>{
                           fit: BoxFit.contain,
                         ),
                       ),
-
                     ),
                     SingleChildScrollView(
-                      child:Column(
+                      child: Column(
                         children: <Widget>[
                           Container(
-                            height: deviceSize.height/2.4,
-                            width: deviceSize.width/3,
+                            height: deviceSize.height / 2.4,
+                            width: deviceSize.width / 3,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image:
-                                AssetImage('assets/weddinglogo.png'),
-                              ),),),
-
+                                image: AssetImage('assets/weddinglogo.png'),
+                              ),
+                            ),
+                          ),
                           Container(
                             child: Form(
                               key: _userLoginFormKey,
                               child: Padding(
-                                padding: const EdgeInsets.only(top:5.0,bottom:15,left: 10,right: 10),
+                                padding: const EdgeInsets.only(
+                                    top: 5.0, bottom: 15, left: 10, right: 10),
                                 child: Card(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(20.0)),
                                   child: Column(
                                     children: <Widget>[
                                       Padding(
                                         padding: const EdgeInsets.all(15.0),
-                                        child: Text("Login",style:TextStyle(fontWeight: FontWeight.w800,fontSize: 25),),
+                                        child: Text(
+                                          "Login",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w800,
+                                              fontSize: 25),
+                                        ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(top:15.0,right: 14,left: 14,bottom: 8),
+                                        padding: const EdgeInsets.only(
+                                            top: 15.0,
+                                            right: 14,
+                                            left: 14,
+                                            bottom: 8),
                                         child: TextFormField(
                                           controller: model.userIdController,
-                                          style: TextStyle(color: Colors.black,fontWeight:FontWeight.bold,fontSize: 15),
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
                                           decoration: InputDecoration(
                                             border: OutlineInputBorder(
-                                              borderRadius: BorderRadius
-                                                  .all(
+                                              borderRadius: BorderRadius.all(
                                                   Radius.circular(15)),
                                             ),
                                             hintText: "Email",
-                                            hintStyle: TextStyle(fontSize: 15) ,
-                                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                                            hintStyle: TextStyle(fontSize: 15),
+                                            contentPadding: EdgeInsets.fromLTRB(
+                                                20.0, 15.0, 20.0, 15.0),
                                           ),
-                                          cursorColor:Colors.black,
-                                          keyboardType: TextInputType.emailAddress,
+                                          cursorColor: Colors.black,
+                                          keyboardType:
+                                              TextInputType.emailAddress,
                                           inputFormatters: [
                                             BlacklistingTextInputFormatter
                                                 .singleLineFormatter,
-                                          ],),),
+                                          ],
+                                        ),
+                                      ),
                                       Padding(
-                                        padding: const EdgeInsets.only(top:5.0,right: 14,left: 14,bottom: 8),
+                                        padding: const EdgeInsets.only(
+                                            top: 5.0,
+                                            right: 14,
+                                            left: 14,
+                                            bottom: 8),
                                         child: TextFormField(
                                           controller: model.passwordController,
                                           obscureText: !model.passwordVisible,
-                                          style: TextStyle(color: Colors.black,fontWeight:FontWeight.bold,fontSize: 15),
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15),
                                           decoration: InputDecoration(
                                             border: OutlineInputBorder(
-                                              borderRadius: BorderRadius
-                                                  .all(
+                                              borderRadius: BorderRadius.all(
                                                   Radius.circular(15)),
                                             ),
                                             hintText: "Password",
-                                            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                                            hintStyle: TextStyle(fontSize: 15) ,
+                                            contentPadding: EdgeInsets.fromLTRB(
+                                                20.0, 15.0, 20.0, 15.0),
+                                            hintStyle: TextStyle(fontSize: 15),
                                             suffixIcon: IconButton(
-                                                icon: Icon(model
-                                                    .passwordVisible
-                                                    ? Icons.visibility
-                                                    : Icons.visibility_off,color: Color(0xFFE6E6E6),),
+                                                icon: Icon(
+                                                  model.passwordVisible
+                                                      ? Icons.visibility
+                                                      : Icons.visibility_off,
+                                                  color: Color(0xFFE6E6E6),
+                                                ),
                                                 onPressed: () {
                                                   model.passwordVisible =
-                                                  !model
-                                                      .passwordVisible;
-                                                }),),
-                                          cursorColor:Colors.black,
+                                                      !model.passwordVisible;
+                                                }),
+                                          ),
+                                          cursorColor: Colors.black,
                                           inputFormatters: [
                                             BlacklistingTextInputFormatter
                                                 .singleLineFormatter,
-                                          ],),),
-                                      SizedBox(height: 16,),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
                                       InkWell(
                                         child: Container(
-                                            width: deviceSize
-                                                .width/2,
-                                            height: deviceSize.height/18,
+                                            width: deviceSize.width / 2,
+                                            height: deviceSize.height / 18,
                                             margin: EdgeInsets.only(top: 25),
                                             decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(20),
-                                                color:Colors.black
-                                            ),
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                color: Colors.black),
                                             child: Center(
                                                 child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                  children: <Widget>[
-                                                    Container(
-                                                      height: 30.0,
-                                                      width: 30.0,
-                                                      decoration: BoxDecoration(
-                                                        image: DecorationImage(
-                                                            image:
-                                                            AssetImage('assets/google.jpg'),
-                                                            fit: BoxFit.cover),
-                                                        shape: BoxShape.circle,
-                                                      ),
-                                                    ),
-                                                    Text('Sign in with Google',
-                                                      style: TextStyle(
-                                                          fontSize: 16.0,
-                                                          fontWeight: FontWeight.bold,
-                                                          color: Colors.white
-                                                      ),
-                                                    ),
-                                                  ],
-                                                )
-                                            )
-                                        ),
-                                        onTap: ()
-                                        async{
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: <Widget>[
+                                                Container(
+                                                  height: 30.0,
+                                                  width: 30.0,
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: AssetImage(
+                                                            'assets/google.jpg'),
+                                                        fit: BoxFit.cover),
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'Sign in with Google',
+                                                  style: TextStyle(
+                                                      fontSize: 16.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white),
+                                                ),
+                                              ],
+                                            ))),
+                                        onTap: () async {
                                           signInWithGoogle(model)
-                                              .then((FirebaseUser user){
+                                              .then((FirebaseUser user) {
                                             model.clearAllModels();
-                                            Navigator.of(context).pushNamedAndRemoveUntil
-                                              (RouteName.Home, (Route<dynamic> route) => false
-                                            );}
-                                          ).catchError((e) => print(e));
+                                            Navigator.of(context)
+                                                .pushNamedAndRemoveUntil(
+                                                    RouteName.Home,
+                                                    (Route<dynamic> route) =>
+                                                        false);
+                                          }).catchError((e) => print(e));
                                         },
                                       ),
-                                      SizedBox(height: 16,),
-                                    ],),
-                                ),),
-                            ),),
-                        ],),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-
-                    model.state==ViewState.Busy
+                    model.state == ViewState.Busy
                         ? Utils.progressBar()
                         : Container(),
                   ],
                 ),
-
               ),
             ),
             onWillPop: () async {
@@ -190,26 +226,20 @@ class _LoginScreenState extends State<LoginScreen>{
               return false;
             },
           );
-        }
-    );
+        });
   }
 
-
   Future<FirebaseUser> signInWithGoogle(SignInViewModel model) async {
-    model.state =ViewState.Busy;
+    model.state = ViewState.Busy;
 
     GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
 
     GoogleSignInAuthentication googleSignInAuthentication =
-
-    await googleSignInAccount.authentication;
+        await googleSignInAccount.authentication;
 
     AuthCredential credential = GoogleAuthProvider.getCredential(
-
       accessToken: googleSignInAuthentication.accessToken,
-
       idToken: googleSignInAuthentication.idToken,
-
     );
 
     AuthResult authResult = await _auth.signInWithCredential(credential);
@@ -224,11 +254,10 @@ class _LoginScreenState extends State<LoginScreen>{
 
     assert(_user.uid == currentUser.uid);
 
-
-    model.state =ViewState.Idle;
+    model.state = ViewState.Idle;
 
     print("User Name: ${_user.displayName}");
     print("User Email ${_user.email}");
-
+    return;
   }
 }
