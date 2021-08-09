@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1061305881684",
+    "project_id": "save-karo-a3e2b",
+    "storage_bucket": "save-karo-a3e2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061305881684:android:c7dbe5794dac894b9bc9c1",
+        "android_client_info": {
+          "package_name": "com.example.save_karo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061305881684-7j36umiavgsojsbv8got8ah91i4agep4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANAV5SO1JvMQ-c3jDixMsDLx0RoLRl7uk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061305881684-7j36umiavgsojsbv8got8ah91i4agep4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
