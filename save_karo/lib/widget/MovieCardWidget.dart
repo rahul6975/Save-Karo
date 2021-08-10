@@ -10,8 +10,8 @@ final _lightColors = [
   Colors.tealAccent.shade100
 ];
 
-class NoteCardWidget extends StatelessWidget {
-  NoteCardWidget({
+class MovieCardWidget extends StatelessWidget {
+  MovieCardWidget({
     Key? key,
     required this.movies,
     required this.index,
