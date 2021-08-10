@@ -62,7 +62,7 @@ CREATE TABLE $tableMovies (
   Future<List<Movies>> readAllMovies() async {
     final db = await instance.database;
 
-    final orderBy = '${MovieFields.id} ASC';
+    final orderBy = '${MovieFields.id} ASC limit 500';
 
     final result = await db.query(tableMovies, orderBy: orderBy);
 

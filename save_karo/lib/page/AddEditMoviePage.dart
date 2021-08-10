@@ -50,6 +50,9 @@ class _AddEditMoviePageState extends State<AddEditMoviePage> {
   void pickImageFromGallery() {
     ImagePicker.pickImage(source: ImageSource.gallery).then((imageFile) {
       imageUrl = Utility.base64String(imageFile.readAsBytesSync());
+      // imageUrl = imageFile.toString();
+      // var customImageFile = imageUrl.substring(6);
+      // imageUrl = customImageFile.replaceAll("'", "");
     });
   }
 
@@ -67,23 +70,34 @@ class _AddEditMoviePageState extends State<AddEditMoviePage> {
         appBar: AppBar(
           actions: [buildButton()],
         ),
-        body: Form(
-          key: _formKey,
-          child: MovieFormWidget(
-            name: name,
-            director: director,
-            image: image,
-            onChangedName: (name) => setState(() => this.name = name),
-            onChangedDirector: (director) =>
-                setState(() => this.director = director),
-            onChangedImage: (image) => setState(() => pickImageFromGallery()),
-          ),
+        body: Column(
+          children: [
+            Form(
+              key: _formKey,
+              child: MovieFormWidget(
+                name: name,
+                director: director,
+                // image: image,
+                onChangedName: (name) => setState(() => this.name = name),
+                onChangedDirector: (director) =>
+                    setState(() => this.director = director),
+                // onChangedImage: (image) => setState(() => this.image = image),
+              ),
+            ),
+            FloatingActionButton(
+              onPressed: pickImageFromGallery,
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
       );
 
   Widget buildButton() {
     final isFormValid =
-        name.isNotEmpty && director.isNotEmpty && imageUrl.isNotEmpty;
+        name.isNotEmpty && director.isNotEmpty && imageUrl != "";
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),

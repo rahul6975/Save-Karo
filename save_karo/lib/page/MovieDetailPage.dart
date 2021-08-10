@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:save_karo/db/MoviesDatabase.dart';
 import 'package:save_karo/model/Movies.dart';
@@ -63,14 +65,24 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     Container(
                       width: 70,
                       height: 600,
-                      child: Utility.imageFromBase64String(
-                        movies.image,
-                      ),
+                      child: Utility.imageFromBase64String(movies.image),
                     ),
                   ],
                 ),
               ),
       );
+
+  Widget setImage() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.blueAccent,
+        image: DecorationImage(
+          image: FileImage(File(movies.image)),
+          fit: BoxFit.fill,
+        ),
+      ),
+    );
+  }
 
   Widget editButton() => IconButton(
         icon: Icon(Icons.edit_outlined),

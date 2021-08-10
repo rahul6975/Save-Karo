@@ -6,7 +6,8 @@ class MovieFormWidget extends StatelessWidget {
   final String? image;
   final ValueChanged<String> onChangedName;
   final ValueChanged<String> onChangedDirector;
-  final ValueChanged<String> onChangedImage;
+
+  // final ValueChanged<String> onChangedImage;
 
   const MovieFormWidget({
     Key? key,
@@ -15,7 +16,7 @@ class MovieFormWidget extends StatelessWidget {
     this.image = '',
     required this.onChangedName,
     required this.onChangedDirector,
-    required this.onChangedImage,
+    // required this.onChangedImage,
   }) : super(key: key);
 
   @override
@@ -39,10 +40,14 @@ class MovieFormWidget extends StatelessWidget {
               //   ],
               // ),
               buildName(),
-              SizedBox(height: 8),
+              SizedBox(height: 30),
               buildDirector(),
-              SizedBox(height: 16),
-              buildImage(),
+              SizedBox(height: 30),
+              Text(
+                "Add Image",
+                style: TextStyle(color: Colors.grey),
+              ),
+              // buildImage(),
             ],
           ),
         ),
@@ -82,17 +87,17 @@ class MovieFormWidget extends StatelessWidget {
         onChanged: onChangedDirector,
       );
 
-  Widget buildImage() => TextFormField(
-        maxLines: 5,
-        initialValue: director,
-        style: TextStyle(color: Colors.white60, fontSize: 18),
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: 'Add image',
-          hintStyle: TextStyle(color: Colors.white60),
-        ),
-        validator: (image) =>
-            image != null && image.isEmpty ? 'Image cannot be empty' : null,
-        onChanged: onChangedImage,
-      );
+// Widget buildImage() => TextFormField(
+//       maxLines: 5,
+//       initialValue: director,
+//       style: TextStyle(color: Colors.white60, fontSize: 18),
+//       decoration: InputDecoration(
+//         border: InputBorder.none,
+//         hintText: 'Add image',
+//         hintStyle: TextStyle(color: Colors.white60),
+//       ),
+//       validator: (image) =>
+//           image != null && image.isEmpty ? 'Image cannot be empty' : null,
+//       // onChanged: onChangedImage,
+//     );
 }

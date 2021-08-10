@@ -38,12 +38,12 @@ class MovieCardWidget extends StatelessWidget {
           children: [
             Text(
               movies.name,
-              style: TextStyle(color: Colors.grey.shade700),
+              style: TextStyle(color: Colors.grey.shade700, fontSize: 20),
             ),
             SizedBox(height: 4),
             Container(
-              width: 40,
-              height: 70,
+              width: 190,
+              height: 150,
               child: Utility.imageFromBase64String(
                 movies.image,
               ),
