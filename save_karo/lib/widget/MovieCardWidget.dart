@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:save_karo/model/Movies.dart';
+import 'package:save_karo/page/AddEditMoviePage.dart';
 
 final _lightColors = [
   Colors.amber.shade300,
@@ -40,12 +41,11 @@ class MovieCardWidget extends StatelessWidget {
               style: TextStyle(color: Colors.grey.shade700),
             ),
             SizedBox(height: 4),
-            Text(
-              movies.director,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            Container(
+              width: 40,
+              height: 70,
+              child: Utility.imageFromBase64String(
+                movies.image,
               ),
             ),
           ],

@@ -1,9 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:save_karo/db/MoviesDatabase.dart';
 import 'package:save_karo/model/Movies.dart';
 import 'package:save_karo/widget/MovieCardWidget.dart';
-
 import 'AddEditMoviePage.dart';
 import 'MovieDetailPage.dart';
 
@@ -41,7 +43,7 @@ class _MoviesPageState extends State<MoviesPage> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: Text(
-            'Notes',
+            'Movies',
             style: TextStyle(fontSize: 24),
           ),
           actions: [Icon(Icons.search), SizedBox(width: 12)],
@@ -63,7 +65,6 @@ class _MoviesPageState extends State<MoviesPage> {
             await Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => AddEditMoviePage()),
             );
-
             refreshMovies();
           },
         ),
@@ -81,10 +82,11 @@ class _MoviesPageState extends State<MoviesPage> {
 
           return GestureDetector(
             onTap: () async {
-              await Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => MovieDetailPage(movieId: movie.id!),
-              ));
-
+              await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => MovieDetailPage(movieId: movie.id!),
+                ),
+              );
               refreshMovies();
             },
             child: MovieCardWidget(movies: movie, index: index),

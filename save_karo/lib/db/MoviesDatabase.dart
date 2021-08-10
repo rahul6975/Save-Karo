@@ -19,22 +19,19 @@ class MoviesDatabase {
   Future<Database> _initDB(String filePath) async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
-
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
   Future _createDB(Database db, int version) async {
     final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     final textType = 'TEXT NOT NULL';
-    final boolType = 'BOOLEAN NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
 
     await db.execute('''
 CREATE TABLE $tableMovies ( 
   ${MovieFields.id} $idType, 
   ${MovieFields.name} $textType,
   ${MovieFields.director} $textType,
-  ${MovieFields.image} $textType,
+  ${MovieFields.image} $textType
   )
 ''');
   }
@@ -66,8 +63,6 @@ CREATE TABLE $tableMovies (
     final db = await instance.database;
 
     final orderBy = '${MovieFields.id} ASC';
-    // final result =
-    //     await db.rawQuery('SELECT * FROM $tableMovies ORDER BY $orderBy');
 
     final result = await db.query(tableMovies, orderBy: orderBy);
 

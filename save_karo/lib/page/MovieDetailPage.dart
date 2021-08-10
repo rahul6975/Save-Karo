@@ -50,37 +50,43 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       movies.name,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 22,
+                        fontSize: 40,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(height: 8),
                     Text(
                       movies.director,
-                      style: TextStyle(color: Colors.white38),
+                      style: TextStyle(color: Colors.white38, fontSize: 25),
                     ),
                     SizedBox(height: 8),
-                    Text(
-                      movies.image,
-                      style: TextStyle(color: Colors.white70, fontSize: 18),
-                    )
+                    Container(
+                      width: 70,
+                      height: 600,
+                      child: Utility.imageFromBase64String(
+                        movies.image,
+                      ),
+                    ),
                   ],
                 ),
               ),
       );
 
   Widget editButton() => IconButton(
-      icon: Icon(Icons.edit_outlined),
-      onPressed: () async {
-        if (isLoading) return;
-        await Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => AddEditMoviePage(
-            movies: movies,
-          ),
-        ));
+        icon: Icon(Icons.edit_outlined),
+        onPressed: () async {
+          if (isLoading) return;
+          await Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => AddEditMoviePage(
+                movies: movies,
+              ),
+            ),
+          );
 
-        refreshMovies();
-      });
+          refreshMovies();
+        },
+      );
 
   Widget deleteButton() => IconButton(
         icon: Icon(Icons.delete),
