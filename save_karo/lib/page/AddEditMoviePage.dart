@@ -3,19 +3,19 @@ import 'package:save_karo/db/MoviesDatabase.dart';
 import 'package:save_karo/model/Movies.dart';
 import 'package:save_karo/widget/MovieFormWidget.dart';
 
-class AddEditNotePage extends StatefulWidget {
+class AddEditMoviePage extends StatefulWidget {
   final Movies? movies;
 
-  const AddEditNotePage({
+  const AddEditMoviePage({
     Key? key,
     this.movies,
   }) : super(key: key);
 
   @override
-  _AddEditNotePageState createState() => _AddEditNotePageState();
+  _AddEditMoviePageState createState() => _AddEditMoviePageState();
 }
 
-class _AddEditNotePageState extends State<AddEditNotePage> {
+class _AddEditMoviePageState extends State<AddEditMoviePage> {
   final _formKey = GlobalKey<FormState>();
   late String name;
   late String director;
@@ -73,7 +73,7 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
       final isUpdating = widget.movies != null;
 
       if (isUpdating) {
-        await updateNote();
+        await updateMovie();
       } else {
         await addMovie();
       }

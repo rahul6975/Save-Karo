@@ -45,7 +45,7 @@ CREATE TABLE $tableMovies (
     return movies.copy(id: id);
   }
 
-  Future<Movies> readNote(int id) async {
+  Future<Movies> readMovie(int id) async {
     final db = await instance.database;
 
     final maps = await db.query(
@@ -62,12 +62,12 @@ CREATE TABLE $tableMovies (
     }
   }
 
-  Future<List<Movies>> readAllNotes() async {
+  Future<List<Movies>> readAllMovies() async {
     final db = await instance.database;
 
     final orderBy = '${MovieFields.id} ASC';
     // final result =
-    //     await db.rawQuery('SELECT * FROM $tableNotes ORDER BY $orderBy');
+    //     await db.rawQuery('SELECT * FROM $tableMovies ORDER BY $orderBy');
 
     final result = await db.query(tableMovies, orderBy: orderBy);
 
