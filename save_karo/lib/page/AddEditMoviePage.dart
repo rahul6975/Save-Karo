@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:save_karo/db/MoviesDatabase.dart';
@@ -50,9 +48,6 @@ class _AddEditMoviePageState extends State<AddEditMoviePage> {
   void pickImageFromGallery() {
     ImagePicker.pickImage(source: ImageSource.gallery).then((imageFile) {
       imageUrl = Utility.base64String(imageFile.readAsBytesSync());
-      // imageUrl = imageFile.toString();
-      // var customImageFile = imageUrl.substring(6);
-      // imageUrl = customImageFile.replaceAll("'", "");
     });
   }
 

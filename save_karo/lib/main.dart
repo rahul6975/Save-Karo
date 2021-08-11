@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:save_karo/page/HomePage.dart';
 import 'package:save_karo/page/MoviesPage.dart';
 
 Future main() async {
@@ -28,6 +29,6 @@ class MyApp extends StatelessWidget {
             elevation: 0,
           ),
         ),
-        home: MoviesPage(),
+        home: HomePage(),
       );
 }
