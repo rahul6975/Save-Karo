@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:save_karo/page/MoviesPage.dart';
 import 'package:save_karo/provider/GoogleSignInProvider.dart';
 import 'package:save_karo/widget/BackgroundPainter.dart';
-import 'package:save_karo/widget/LoggedInWidget.dart';
 import 'package:save_karo/widget/SignUpWidget.dart';
 
 class HomePage extends StatelessWidget {

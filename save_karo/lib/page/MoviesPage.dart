@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:save_karo/db/MoviesDatabase.dart';
 import 'package:save_karo/model/Movies.dart';
+import 'package:save_karo/provider/GoogleSignInProvider.dart';
 import 'package:save_karo/widget/MovieCardWidget.dart';
 import 'AddEditMoviePage.dart';
 import 'MovieDetailPage.dart';
@@ -46,7 +48,17 @@ class _MoviesPageState extends State<MoviesPage> {
             'Movies',
             style: TextStyle(fontSize: 24),
           ),
-          actions: [Icon(Icons.search), SizedBox(width: 12)],
+          actions: [
+
+            ElevatedButton(
+              onPressed: () {
+                final provider =
+                Provider.of<GoogleSignInProvider>(context, listen: false);
+                provider.logout();
+              },
+              child: Text('Logout'),
+            ),
+          ],
         ),
         body: Center(
           child: isLoading
