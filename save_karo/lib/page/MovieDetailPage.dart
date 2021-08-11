@@ -95,7 +95,6 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               ),
             ),
           );
-
           refreshMovies();
         },
       );
