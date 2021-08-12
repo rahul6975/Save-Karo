@@ -22,7 +22,7 @@ class SignUpWidget extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: 20),
               width: 175,
               child: Text(
-                'Welcome Back To Movies App',
+                'Welcome to Save Karo App',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
@@ -36,7 +36,7 @@ class SignUpWidget extends StatelessWidget {
           SizedBox(height: 12),
           Text(
             'Login to continue',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(fontSize: 16, color: Colors.white),
           ),
           Spacer(),
         ],
